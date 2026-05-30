@@ -1,3 +1,5 @@
 FROM atendai/evolution-api:v2.1.1
 
-RUN echo 'DATABASE_CONNECTION_URI=postgres://postgres:h49694co387vknvwcd1y@agent-dashboard_postgres:5432/evolution?sslmode=disable' > /evolution/prisma/.env
+RUN sed -i 's|localhost:5432|agent-dashboard_postgres:5432|g' /evolution/.env && \
+    sed -i 's|localhost:5432|agent-dashboard_postgres:5432|g' /evolution/prisma/.env 2>/dev/null || true
+    
